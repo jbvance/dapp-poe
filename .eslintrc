@@ -25,7 +25,9 @@
     }
   },
   "rules": { // 0=off, 1=warn, 2=error. Defaults to 0.
-    semi: [2, "never"],
+    "semi": [2, "never"],
+    "linebreak-style":0,
+    "eslint linebreak-style": [0, "error", "windows"],
     "no-multi-spaces": [2, {
       "exceptions": {
         "VariableDeclaration": true,
