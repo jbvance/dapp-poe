@@ -3,17 +3,15 @@ import PropTypes                  from 'prop-types'
 import { connect }                from 'react-redux'
 import { bindActionCreators }     from 'redux'
 import * as accountActionCreators from 'core/actions/actions-account'
-import { requestAccountAccess }   from 'core/libs/lib-metamask-helper'
+import Stepper                    from 'components/Stepper'
+import Photo                      from './components/Photo'
+import CredentialsPanel           from './panels/CredentialsPanel'
+import GenerateHashPanel          from './panels/GenerateHashPanel'
+import RegisterAssetPanel         from './panels/RegisterAssetPanel'
+import SuccessPanel               from './SuccessPanel'
 import { styles }                 from './styles.scss'
 
 class RegisterView extends Component {
-
-  componentDidMount() {
-    const { actions } = this.props
-    requestAccountAccess((defaultAccount) => {
-      actions.account.setDefaultAccount(defaultAccount)
-    })
-  }
 
   render() {
     return (
