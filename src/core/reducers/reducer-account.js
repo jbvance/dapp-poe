@@ -7,7 +7,6 @@ const initialState = {
 export function accountReducer(state = initialState, action) {
   switch (action.type) {
     case constants.SET_ACCOUNT:
-      debugger
       return { ...state, id: action.id }
     default:
       return state

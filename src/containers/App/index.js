@@ -18,8 +18,8 @@ import AssetsView               from 'containers/AssetsView'
 import PendingTransactionsView  from 'containers/PendingTransactionsView'
 import LatestUploadsView        from 'containers/LatestUploadsView'
 import RegisterView             from 'containers/RegisterView'
-import Header                   from './components/Header'
-import Footer                   from './components/Footer'
+import NormalLayoutRoute        from './layouts/NormalLayoutRoute'
+import RegistrationLayoutRoute  from './layouts/RegistrationLayoutRoute'
 import MetaMaskNotification     from './components/MetaMaskNotification'
 
 import './styles.scss' // global styles
@@ -52,20 +52,17 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <HashRouter>
           <div>
-            <Header />
-            <Footer />
             <div className="app-shell">
               { isLoading ? (
                 <ProgressIndicator color="secondary" size={50} />
               ) : (
                 <Switch>
-                  <Route path="/home" component={HomeView} />
-                  <Route path="/assets" component={AssetsView} />
-                  <Route path="/pending" component={PendingTransactionsView} />
-                  <Route path="/latest" component={LatestUploadsView} />
-                  <Route path="/upload" component={UploadView} />
-                  <Route path="/register" component={RegisterView} />
-                  <Redirect from="/" to="/home" />
+                  <NormalLayoutRoute path="/assets" component={AssetsView} />
+                  <NormalLayoutRoute path="/pending" component={PendingTransactionsView} />
+                  <NormalLayoutRoute path="/latest" component={LatestUploadsView} />
+                  <NormalLayoutRoute path="/upload" component={UploadView} />
+                  <RegistrationLayoutRoute path="/register" component={RegisterView} />
+                  <Redirect from="/" to="/assets" />
                 </Switch>
               )}
             </div>
