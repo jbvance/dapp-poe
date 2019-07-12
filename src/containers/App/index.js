@@ -13,9 +13,14 @@ import {
 import ProgressIndicator        from 'components/ProgressIndicator'
 import theme                    from 'configs/theme/config-theme'
 import HomeView                 from 'containers/HomeView'
-import UploadView                 from 'containers/UploadView'
+import UploadView               from 'containers/UploadView'
+import AssetsView               from 'containers/AssetsView'
+import PendingTransactionsView  from 'containers/PendingTransactionsView'
+import LatestUploadsView        from 'containers/LatestUploadsView'
+import RegisterView             from 'containers/RegisterView'
 import Header                   from './components/Header'
 import Footer                   from './components/Footer'
+import MetaMaskNotification     from './components/MetaMaskNotification'
 
 import './styles.scss' // global styles
 
@@ -40,7 +45,8 @@ class App extends Component {
 
   render() {
     const { web3Provider } = this.state
-    const isLoading = web3Provider === null
+    const isLoading = false
+    // const isLoading = web3Provider === null
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -54,13 +60,18 @@ class App extends Component {
               ) : (
                 <Switch>
                   <Route path="/home" component={HomeView} />
+                  <Route path="/assets" component={AssetsView} />
+                  <Route path="/pending" component={PendingTransactionsView} />
+                  <Route path="/latest" component={LatestUploadsView} />
                   <Route path="/upload" component={UploadView} />
+                  <Route path="/register" component={RegisterView} />
                   <Redirect from="/" to="/home" />
                 </Switch>
               )}
             </div>
           </div>
         </HashRouter>
+        <MetaMaskNotification />
       </MuiThemeProvider>
     )
   }

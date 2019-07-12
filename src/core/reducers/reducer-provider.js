@@ -7,9 +7,10 @@ const initialState = {
 export function providerReducer(state = initialState, action) {
   switch (action.type) {
     case constants.SET_PROVIDER:
-      return Object.assign({}, state, {
-        web3Provider: action.web3Provider
-      })
+      return { ...state, web3Provider: action.web3Provider }
+      // return Object.assign({}, state, {
+      //   web3Provider: action.web3Provider
+      // })
 
     default:
       return state

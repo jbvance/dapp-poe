@@ -10,6 +10,7 @@ import MenuItem             from '@material-ui/core/MenuItem'
 import AccountCircle        from '@material-ui/icons/AccountCircle'
 import { appConfig }        from 'configs/config-main'
 import { styles }           from './styles.scss'
+import Navigation      from './components/Navigation'
 
 class Header extends Component {
   constructor(props) {
@@ -75,6 +76,7 @@ class Header extends Component {
             {menu}
           </Toolbar>
         </AppBar>
+        <Navigation />
       </div>
     )
   }
