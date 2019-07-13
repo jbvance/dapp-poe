@@ -26,6 +26,7 @@ class Photo extends Component {
 
   setImage=() => {
     const { asset } = this.props
+    console.log('ASSET', asset)
 
     if (!asset.stagedAsset) {
       this.setState({
