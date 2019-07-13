@@ -9,5 +9,6 @@ export default keyMirror({
   CLOSE_LEFT_NAV: null,
   SET_PROVIDER: null,
   ADD_ASSET: null,
-  SET_ACCOUNT: null
+  SET_ACCOUNT: null,
+  SET_CONTRACT: null
 })
