@@ -1,6 +1,6 @@
 export function getString(asset, callback) {
-  if(asset) {
-    const reader = new FileReader();
+  if (asset) {
+    const reader = new FileReader()
     reader.readAsDataURL(asset)
 
     reader.onload = () => {

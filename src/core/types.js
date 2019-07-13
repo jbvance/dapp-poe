@@ -10,5 +10,7 @@ export default keyMirror({
   SET_PROVIDER: null,
   ADD_ASSET: null,
   SET_ACCOUNT: null,
-  SET_CONTRACT: null
+  SET_CONTRACT: null,
+  SET_ACCOUNT_EMAIL: null,
+  CHECK_ASSET: null
 })

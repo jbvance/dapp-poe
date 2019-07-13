@@ -13,14 +13,13 @@ import SuccessPanel               from './panels/SuccessPanel'
 import { styles }                 from './styles.scss'
 
 class RegisterView extends Component {
-  getpanel = () => {
+  getPanel = () => {
     const { location } = this.props
     return parseInt(location.search.substr(1).split('=')[1], 10)
   }
 
   renderContent() {
-    const { panel } = this.props
-    switch (panel) {
+    switch (this.getPanel()) {
       case 1:
         return <CredentialsPanel />
       case 2:
@@ -39,7 +38,8 @@ class RegisterView extends Component {
 
   render() {
     const { asset } = this.props
-    const panel = this.getpanel()
+    const panel = this.getPanel()
+
     return (
       <div className={styles}>
         <div id="register-view">
@@ -53,7 +53,7 @@ class RegisterView extends Component {
                 'Register'
               ]}
             />
-            <div id="registration-form">{this.renderContent()}</div>
+            <div id="registration-form">{this.renderContent(panel)}</div>
           </div>
         </div>
       </div>

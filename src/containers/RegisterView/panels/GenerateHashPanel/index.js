@@ -19,8 +19,9 @@ class GenerateHashPanel extends Component {
 
   componentDidMount() {
     const { actions, asset } = this.props
+    console.log('MOUNTING', asset.assetHash)
 
-    if (asset.assetHash === '') {
+    if (asset.assetHash === '' || asset.assetHash === null) {
       getString(asset.stagedAsset, (assetUrl) => {
         setTimeout(() => {
           actions.asset.checkIfRegistered(assetUrl)

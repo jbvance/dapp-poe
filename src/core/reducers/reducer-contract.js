@@ -1,4 +1,4 @@
-import constants from '/core/types'
+import constants from 'core/types'
 
 const initialState = {
   proofOfExContract: null

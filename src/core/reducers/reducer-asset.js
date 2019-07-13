@@ -1,4 +1,4 @@
-import constants from 'core/types';
+import constants from 'core/types'
 
 const intialState = {
   stagedAsset: null,
@@ -11,8 +11,17 @@ const intialState = {
 
 export const assetReducer = (state = intialState, action) => {
   switch (action.type) {
+
     case constants.ADD_ASSET:
       return { ...state, stagedAsset: action.asset[0] }
+
+    case constants.CHECK_ASSET:
+      debugger
+      return {
+        ...state,
+        assetHash: action.assetHash,
+        alreadyExists: action.alreadyExists
+      }
     default:
       return state
   }
