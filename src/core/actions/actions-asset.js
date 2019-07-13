@@ -7,11 +7,18 @@ export const addAsset = asset => ({
 })
 
 async function checkIfAssetRegistered(ProofOfExContract, assetHash) {
-  console.log("GOT HERE")
   const assetExists = ProofOfExContract.deployed().then((poe) => {
     return poe.checkIfRegistered(assetHash)
   })
   return assetExists
+}
+
+async function registerAsset(ProofOfExContract, assetHash) {
+  const result = ProofOfExContract.deployed().then((poe) => {
+    return poe.registerAsset(assetHash)
+  })
+  const transaction = (result !== null) ? result : null
+  return transaction
 }
 
 function dispatchAssetAlreadyExists(dispatch) {
@@ -33,6 +40,26 @@ function dispatchAssetDoesNotExist(assetHash, dispatch) {
   })())
 }
 
+function dispatchAssetCreated(transaction, assetHash, dispatch) {
+  dispatch((() => {
+    return {
+      type: constants.CREATE_ASSET_HASH,
+      assetHash,
+      transaction,
+      success: true
+    }
+  })())
+}
+
+function dispatchCreationError(dispatch) {
+  dispatch((() => {
+    return {
+      type: constants.CREATE_ASSET_HASH,
+      success: false
+    }
+  })())
+}
+
 export function checkIfRegistered(assetUrl) {
   return async (dispatch, getState) => {
     const { proofOfExContract } = getState().contract
@@ -43,6 +70,20 @@ export function checkIfRegistered(assetUrl) {
       dispatchAssetAlreadyExists(dispatch)
     } else {
       dispatchAssetDoesNotExist(assetHash, dispatch)
+    }
+  }
+}
+
+export function register() {
+  return async (dispatch, getState) => {
+    const { proofOfExContract } = getState().contract
+    const { assetHash } = getState().asset
+    const transaction = await registerAsset(proofOfExContract, assetHash)
+
+    if (transaction) {
+      dispatchAssetCreated(transaction, assetHash, dispatch)
+    } else {
+      dispatchCreationError(dispatch)
     }
   }
 }
